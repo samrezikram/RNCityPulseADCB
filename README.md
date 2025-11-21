@@ -199,7 +199,7 @@ High level screen overview:
 
 ## 📸 Screenshots
 
-| Sign In | Home (Light) | Home (Dark) | Event Detail |
+| Sign In | Sign Up (Dark) | Home (Dark) | Event Detail |
 | ------ | ------------- | ----------- | ------------ |
 | ![Sign In](./docs/screenshots/citypulse-signin-ios.png) | ![Sign Up](./docs/screenshots/citypulse-signup-ios.png) | ![Home Dark](./docs/screenshots/home-dark.png) | ![Event Detail](./docs/screenshots/event-detail.png) |
 
