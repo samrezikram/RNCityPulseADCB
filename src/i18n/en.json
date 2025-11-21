@@ -1,0 +1,22 @@
+{
+  "auth": {
+    "signin_title": "Welcome back",
+    "signup_title": "Create your account",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "signin": "Sign in",
+    "signup": "Sign up"
+  },
+  "home": {
+    "title": "City Pulse",
+    "search_placeholder": "Search events",
+    "city_placeholder": "City"
+  },
+  "profile": {
+    "title": "Profile",
+    "language": "Language",
+    "biometric": "Enable biometric login",
+    "logout": "Logout"
+  }
+}

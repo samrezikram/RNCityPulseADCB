@@ -1,0 +1,22 @@
+{
+  "auth": {
+    "signin_title": "تسجيل الدخول",
+    "signup_title": "إنشاء حساب",
+    "email": "البريد",
+    "password": "كلمة المرور",
+    "name": "الاسم",
+    "signin": "تسجيل الدخول",
+    "signup": "إنشاء حساب"
+  },
+  "home": {
+    "title": "نبض المدينة",
+    "search_placeholder": "بحث عن فعالية",
+    "city_placeholder": "المدينة"
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "language": "اللغة",
+    "biometric": "تفعيل الدخول بالبصمة",
+    "logout": "تسجيل خروج"
+  }
+}
