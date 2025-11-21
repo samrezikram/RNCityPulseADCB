@@ -13,7 +13,10 @@ export const supportedLanguages = {
   ar: { label: 'العربية', isRTL: true },
 };
 
-const resources = { en: { translation: en }, ar: { translation: ar } };
+const resources = {
+  en: { translation: en },
+  ar: { translation: ar },
+};
 
 export const initI18n = async () => {
   const saved = await AsyncStorage.getItem(STORAGE_KEY);
@@ -29,7 +32,6 @@ export const initI18n = async () => {
       resources,
       lng: initialLang,
       fallbackLng: 'en',
-      compatibilityJSON: 'v3',
       interpolation: { escapeValue: false },
     });
 
@@ -46,7 +48,7 @@ export const changeLanguage = async (lang: 'en' | 'ar') => {
   const isRTL = supportedLanguages[lang].isRTL;
   if (I18nManager.isRTL !== isRTL) {
     I18nManager.forceRTL(isRTL);
-    // user would need app restart for full effect
+    // you can optionally alert user to restart app
   }
 };
 
