@@ -19,7 +19,7 @@ const resources = {
 };
 
 export const initI18n = async () => {
-  const saved = await AsyncStorage.getItem(STORAGE_KEY);
+  const saved = (await AsyncStorage.getItem(STORAGE_KEY)) as 'en' | 'ar' | null;
   const deviceLocales = RNLocalize.getLocales();
   const deviceIsArabic = deviceLocales[0]?.languageCode === 'ar';
 

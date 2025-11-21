@@ -1,22 +1,31 @@
 {
+  "home": {
+    "title": "نبض المدينة",
+    "search_placeholder": "ابحث عن الفعاليات",
+    "city_placeholder": "المدينة",
+    "profile": "الملف الشخصي"
+  },
   "auth": {
     "signin_title": "تسجيل الدخول",
     "signup_title": "إنشاء حساب",
-    "email": "البريد",
+    "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
     "name": "الاسم",
     "signin": "تسجيل الدخول",
-    "signup": "إنشاء حساب"
-  },
-  "home": {
-    "title": "نبض المدينة",
-    "search_placeholder": "بحث عن فعالية",
-    "city_placeholder": "المدينة"
+    "signup": "تسجيل",
+    "biometric_title": "افتح نبض المدينة",
+    "biometric_subtitle": "استخدم البصمة أو التعرف على الوجه للمتابعة"
   },
   "profile": {
     "title": "الملف الشخصي",
     "language": "اللغة",
-    "biometric": "تفعيل الدخول بالبصمة",
-    "logout": "تسجيل خروج"
+    "security": "الأمان",
+    "biometric": "تسجيل الدخول بالبصمة",
+    "biometric_not_supported": "البصمة غير متوفرة على هذا الجهاز",
+    "logout": "تسجيل الخروج"
+  },
+  "event": {
+    "map_preview": "معاينة الخريطة",
+    "back_to_events": "العودة إلى الفعاليات"
   }
 }

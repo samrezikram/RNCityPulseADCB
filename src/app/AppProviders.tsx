@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider } from '../designSystem/ThemeProvider';
 import { initI18n } from '../i18n';
 import RootNavigator from './RootNavigator';
-
-const client = new QueryClient();
 
 const AppProviders: React.FC = () => {
   const [ready, setReady] = useState(false);
@@ -17,15 +15,15 @@ const AppProviders: React.FC = () => {
   }, []);
 
   if (!ready) {
-    return null; // you can show a small loader
+    return null;
   }
 
   return (
-    <QueryClientProvider client={client}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider>
         <RootNavigator />
       </ThemeProvider>
-    </QueryClientProvider>
+    </GestureHandlerRootView>
   );
 };
 

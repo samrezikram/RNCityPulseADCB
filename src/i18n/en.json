@@ -1,22 +1,27 @@
 {
+  "home": {
+    "title": "City Pulse",
+    "search_placeholder": "Search events",
+    "city_placeholder": "City",
+    "profile": "Profile"
+  },
   "auth": {
-    "signin_title": "Welcome back",
-    "signup_title": "Create your account",
+    "signin_title": "Sign in",
+    "signup_title": "Sign up",
     "email": "Email",
     "password": "Password",
     "name": "Name",
     "signin": "Sign in",
-    "signup": "Sign up"
-  },
-  "home": {
-    "title": "City Pulse",
-    "search_placeholder": "Search events",
-    "city_placeholder": "City"
+    "signup": "Sign up",
+    "biometric_title": "Unlock City Pulse",
+    "biometric_subtitle": "Use your biometric to continue"
   },
   "profile": {
     "title": "Profile",
     "language": "Language",
-    "biometric": "Enable biometric login",
-    "logout": "Logout"
+    "security": "Security",
+    "biometric": "Biometric login",
+    "biometric_not_supported": "Biometric not available on this device",
+    "logout": "Log out"
   }
 }

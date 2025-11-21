@@ -1,5 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { useAuth } from '../bridge/auth/useAuth';
 import BiometricGateScreen from '../modules/auth/screens/BiometricGateScreen';
@@ -9,6 +9,7 @@ import SplashScreen from '../modules/auth/screens/SplashScreen';
 import EventDetailScreen from '../modules/events/screens/EventDetailScreen';
 import HomeScreen from '../modules/events/screens/HomeScreen';
 import ProfileScreen from '../modules/profile/screens/ProfileScreen';
+import type { EventItem } from '../services/api/ticketmasterClient';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -16,11 +17,11 @@ export type RootStackParamList = {
   SignUp: undefined;
   BiometricGate: undefined;
   Home: undefined;
-  EventDetail: { eventId: string };
+  EventDetail: { event: EventItem };
   Profile: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator<RootStackParamList>();
 
 const RootNavigator: React.FC = () => {
   const { user, loading } = useAuth();
@@ -29,16 +30,11 @@ const RootNavigator: React.FC = () => {
     return <SplashScreen />;
   }
 
-  const initialRouteName: keyof RootStackParamList = user
-    ? 'BiometricGate'
-    : 'SignIn';
+  const initialRouteName: keyof RootStackParamList = user ? 'BiometricGate' : 'SignIn';
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{ headerShown: false }}
-        initialRouteName={initialRouteName}
-      >
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={initialRouteName}>
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />

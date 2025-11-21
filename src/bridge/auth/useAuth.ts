@@ -6,6 +6,8 @@ type AuthState = {
   loading: boolean;
 };
 
+
+
 export const useAuth = () => {
   const [state, setState] = useState<AuthState>({ user: null, loading: true });
 

@@ -10,7 +10,12 @@ export const useFavourites = () => {
     (async () => {
       const raw = await AsyncStorage.getItem(FAV_KEY);
       if (raw) {
-        setFavourites(JSON.parse(raw));
+        try {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) setFavourites(parsed);
+        } catch {
+          setFavourites([]);
+        }
       }
     })();
   }, []);

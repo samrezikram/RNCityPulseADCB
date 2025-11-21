@@ -1,15 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  ActivityIndicator,
-  FlatList,
-  Image,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ActivityIndicator, FlatList, Image, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { useEventSearch } from '../../../bridge/events/useEventSearch';
 import { useFavourites } from '../../../bridge/favourites/useFavourites';
 import Button from '../../../designSystem/components/Button';
@@ -34,22 +26,19 @@ const HomeScreen: React.FC = () => {
     navigation.navigate('EventDetail', { event });
   };
 
+  const handleOpenProfile = () => {
+    navigation.navigate('Profile');
+  };
+
   const renderItem = ({ item }: { item: EventItem }) => {
     const venue = item._embedded?.venues?.[0];
     const date = item.dates?.start?.localDate;
     const fav = isFavourite(item.id);
 
     return (
-      <TouchableOpacity
-        style={styles.card}
-        onPress={() => handleOpenEvent(item)}
-      >
+      <TouchableOpacity style={styles.card} onPress={() => handleOpenEvent(item)}>
         {item.images?.[0]?.url && (
-          <Image
-            source={{ uri: item.images[0].url }}
-            style={styles.image}
-            resizeMode="cover"
-          />
+          <Image source={{ uri: item.images[0].url }} style={styles.image} resizeMode="cover" />
         )}
         <View style={styles.cardContent}>
           <View style={{ flex: 1 }}>
@@ -57,11 +46,7 @@ const HomeScreen: React.FC = () => {
               {item.name}
             </Text>
             {venue?.name && (
-              <Text
-                color="textSecondary"
-                numberOfLines={1}
-                style={styles.cardSub}
-              >
+              <Text color="textSecondary" numberOfLines={1} style={styles.cardSub}>
                 {venue.name}
               </Text>
             )}
@@ -84,9 +69,15 @@ const HomeScreen: React.FC = () => {
 
   return (
     <Screen>
-      <Text variant="heading1" style={styles.title}>
-        {t('home.title')}
-      </Text>
+      <View style={styles.headerRow}>
+        <Text variant="heading1" style={styles.title}>
+          {t('home.title')}
+        </Text>
+
+        <TouchableOpacity onPress={handleOpenProfile} style={styles.profileButton}>
+          <Text color="primary">{t('home.profile') ?? 'Profile'}</Text>
+        </TouchableOpacity>
+      </View>
 
       <View style={styles.searchRow}>
         <View style={styles.searchColumn}>
@@ -116,11 +107,7 @@ const HomeScreen: React.FC = () => {
         </View>
       </View>
 
-      <Button
-        label="Search events"
-        onPress={handleSearch}
-        style={styles.searchButton}
-      />
+      <Button label="Search events" onPress={handleSearch} style={styles.searchButton} />
 
       {loading && (
         <View style={styles.center}>
@@ -145,8 +132,16 @@ const HomeScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  title: {
+  title: {},
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: 16,
+  },
+  profileButton: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
   },
   searchRow: {
     flexDirection: 'row',
