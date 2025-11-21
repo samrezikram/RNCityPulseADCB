@@ -1,22 +1,40 @@
 export const colors = {
-  primary: '#E30613',
-  primarySoft: '#FDE7E9',
-  background: '#050816',
-  surface: '#0B1020',
-  surfaceAlt: '#111827',
-  accent: '#F97316',
-  borderSubtle: '#1F2933',
-
+  background: '#020617',
+  surface: '#020617',
+  card: '#020617',
+  primary: '#EF4444',        // ADCB-ish red
+  accent: '#F97316',         // accent / secondary
   textPrimary: '#F9FAFB',
   textSecondary: '#9CA3AF',
   textMuted: '#6B7280',
-  textDanger: '#F87171',
+  textDanger: '#FCA5A5',
+  border: '#111827',
+} as const;
 
-  success: '#22C55E',
-  warning: '#FACC15',
-  error: '#EF4444',
+export type ColorName = keyof typeof colors;
 
-  pillActiveBg: '#111827',
-  pillInactiveBg: '#020617',
-  pillBorder: '#1F2937',
+export const lightColors: Record<ColorName, string> = {
+  background: '#F3F4F6',
+  surface: '#FFFFFF',
+  card: '#FFFFFF',
+  primary: '#EF4444',
+  accent: '#F97316',
+  textPrimary: '#111827',
+  textSecondary: '#4B5563',
+  textMuted: '#6B7280',
+  textDanger: '#DC2626',
+  border: '#D1D5DB',
+};
+
+export const darkColors: Record<ColorName, string> = {
+  background: '#020617',
+  surface: '#020617',
+  card: '#020617',
+  primary: '#EF4444',
+  accent: '#F97316',
+  textPrimary: '#F9FAFB',
+  textSecondary: '#9CA3AF',
+  textMuted: '#6B7280',
+  textDanger: '#FCA5A5',
+  border: '#111827',
 };

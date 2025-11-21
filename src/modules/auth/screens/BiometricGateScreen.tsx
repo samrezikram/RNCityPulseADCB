@@ -29,7 +29,7 @@ const BiometricGateScreen: React.FC = () => {
       if (ok) {
         navigation.reset({
           index: 0,
-          routes: [{ name: 'Home' }],
+          routes: [{ name: 'MainTabs' }],
         });
       } else {
         await signOut();

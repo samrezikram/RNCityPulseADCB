@@ -1,36 +1,33 @@
-import React, { PropsWithChildren } from 'react';
-import { ScrollView, StyleSheet, ViewStyle } from 'react-native';
+// src/designSystem/components/Screen.tsx
+import React from 'react';
+import { ScrollView, StyleSheet, View, ViewStyle } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../ThemeProvider';
 
-type Props = PropsWithChildren<{
+type Props = {
+  children: React.ReactNode;
   scrollable?: boolean;
-  contentStyle?: ViewStyle;
-}>;
+  style?: ViewStyle;
+};
 
-const Screen: React.FC<Props> = ({
-  scrollable = true,
-  contentStyle,
-  children,
-}) => {
+const Screen: React.FC<Props> = ({ children, scrollable = true, style }) => {
   const theme = useTheme();
 
-  const content = scrollable ? (
-    <ScrollView
-      contentInsetAdjustmentBehavior="automatic"
-      contentContainerStyle={[styles.content, contentStyle]}
-    >
-      {children}
-    </ScrollView>
-  ) : (
-    children
-  );
+  if (scrollable) {
+    return (
+      <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]}>
+        <ScrollView
+          contentContainerStyle={[styles.content, { backgroundColor: theme.colors.background }, style]}
+          showsVerticalScrollIndicator={false}>
+          {children}
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
 
   return (
-    <SafeAreaView
-      style={[styles.safeArea, { backgroundColor: theme.colors.background }]}
-    >
-      {content}
+    <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]}>
+      <View style={[styles.content, { backgroundColor: theme.colors.background }, style]}>{children}</View>
     </SafeAreaView>
   );
 };

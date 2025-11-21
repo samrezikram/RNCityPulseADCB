@@ -7,10 +7,11 @@ import { useFavourites } from '../../../bridge/favourites/useFavourites';
 import Button from '../../../designSystem/components/Button';
 import Screen from '../../../designSystem/components/Screen';
 import Text from '../../../designSystem/components/Text';
+import { useTheme } from '../../../designSystem/ThemeProvider';
 import { EventItem } from '../../../services/api/ticketmasterClient';
-
 const HomeScreen: React.FC = () => {
   const { t } = useTranslation();
+  const theme = useTheme();
   const navigation = useNavigation<any>();
   const { events, loading, error, search } = useEventSearch();
   const { isFavourite, toggleFavourite } = useFavourites();
@@ -26,17 +27,21 @@ const HomeScreen: React.FC = () => {
     navigation.navigate('EventDetail', { event });
   };
 
-  const handleOpenProfile = () => {
-    navigation.navigate('Profile');
-  };
-
   const renderItem = ({ item }: { item: EventItem }) => {
     const venue = item._embedded?.venues?.[0];
     const date = item.dates?.start?.localDate;
     const fav = isFavourite(item.id);
 
     return (
-      <TouchableOpacity style={styles.card} onPress={() => handleOpenEvent(item)}>
+      <TouchableOpacity
+        style={[
+          styles.card,
+          {
+            backgroundColor: theme.colors.card,
+            borderColor: theme.colors.border,
+          },
+        ]}
+        onPress={() => handleOpenEvent(item)}>
         {item.images?.[0]?.url && (
           <Image source={{ uri: item.images[0].url }} style={styles.image} resizeMode="cover" />
         )}
@@ -69,15 +74,9 @@ const HomeScreen: React.FC = () => {
 
   return (
     <Screen>
-      <View style={styles.headerRow}>
-        <Text variant="heading1" style={styles.title}>
-          {t('home.title')}
-        </Text>
-
-        <TouchableOpacity onPress={handleOpenProfile} style={styles.profileButton}>
-          <Text color="primary">{t('home.profile') ?? 'Profile'}</Text>
-        </TouchableOpacity>
-      </View>
+      <Text variant="heading1" style={styles.title}>
+        {t('home.title')}
+      </Text>
 
       <View style={styles.searchRow}>
         <View style={styles.searchColumn}>
@@ -89,7 +88,14 @@ const HomeScreen: React.FC = () => {
             onChangeText={setKeyword}
             placeholder={t('home.search_placeholder')}
             placeholderTextColor="#6B7280"
-            style={styles.input}
+            style={[
+              styles.input,
+              {
+                backgroundColor: theme.colors.surface,
+                borderColor: theme.colors.border,
+                color: theme.colors.textPrimary,
+              },
+            ]}
           />
         </View>
 
@@ -132,16 +138,8 @@ const HomeScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  title: {},
-  headerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  title: {
     marginBottom: 16,
-  },
-  profileButton: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
   },
   searchRow: {
     flexDirection: 'row',
@@ -173,10 +171,8 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 16,
     overflow: 'hidden',
-    backgroundColor: '#0B1020',
-    borderWidth: 1,
-    borderColor: '#111827',
     marginBottom: 12,
+    borderWidth: 1,
   },
   image: {
     width: '100%',

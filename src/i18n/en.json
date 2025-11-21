@@ -23,5 +23,9 @@
     "biometric": "Biometric login",
     "biometric_not_supported": "Biometric not available on this device",
     "logout": "Log out"
+  },
+  "event": {
+    "map_preview" : "Map Preview",
+    "back_to_events": "Back to events"
   }
 }

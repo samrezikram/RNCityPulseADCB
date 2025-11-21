@@ -1,20 +1,21 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useFavourites } from '../../../bridge/favourites/useFavourites';
 import Button from '../../../designSystem/components/Button';
 import Screen from '../../../designSystem/components/Screen';
 import Text from '../../../designSystem/components/Text';
+import { useTheme } from '../../../designSystem/ThemeProvider';
 import { EventItem } from '../../../services/api/ticketmasterClient';
-
 type RouteParams = {
   event: EventItem;
 };
 
 const EventDetailScreen: React.FC = () => {
   const route = useRoute<any>();
+  const theme = useTheme();
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const { isFavourite, toggleFavourite } = useFavourites();
@@ -34,7 +35,9 @@ const EventDetailScreen: React.FC = () => {
 
   return (
     <Screen scrollable={false}>
-      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentContainerStyle={[styles.content, { backgroundColor: theme.colors.background }]}
+        showsVerticalScrollIndicator={false}>
         {event.images?.[0]?.url && (
           <Image source={{ uri: event.images[0].url }} style={styles.image} resizeMode="cover" />
         )}
@@ -68,7 +71,7 @@ const EventDetailScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
 
-        {hasLocation && (
+        {hasLocation && Platform.OS === 'ios' && (
           <View style={styles.mapContainer}>
             <Text variant="heading2" style={styles.sectionTitle}>
               {t('event.map_preview') ?? 'Map preview'}

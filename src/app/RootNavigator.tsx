@@ -1,3 +1,4 @@
+// src/app/RootNavigator.tsx
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
@@ -7,18 +8,16 @@ import SignInScreen from '../modules/auth/screens/SignInScreen';
 import SignUpScreen from '../modules/auth/screens/SignUpScreen';
 import SplashScreen from '../modules/auth/screens/SplashScreen';
 import EventDetailScreen from '../modules/events/screens/EventDetailScreen';
-import HomeScreen from '../modules/events/screens/HomeScreen';
-import ProfileScreen from '../modules/profile/screens/ProfileScreen';
 import type { EventItem } from '../services/api/ticketmasterClient';
+import MainTabs from './MainTabs';
 
 export type RootStackParamList = {
   Splash: undefined;
   SignIn: undefined;
   SignUp: undefined;
   BiometricGate: undefined;
-  Home: undefined;
+  MainTabs: undefined;
   EventDetail: { event: EventItem };
-  Profile: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -39,9 +38,8 @@ const RootNavigator: React.FC = () => {
         <Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="BiometricGate" component={BiometricGateScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="MainTabs" component={MainTabs} />
         <Stack.Screen name="EventDetail" component={EventDetailScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
